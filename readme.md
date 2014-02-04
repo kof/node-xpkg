@@ -27,6 +27,11 @@ Now you can write just one x-package.json file and generate from it files for an
 
     After you run `xpkg` with this example you will get bower.json and package.json generated, where package.json will additionally contain "bin" declaration and non of them will contain x-package specific declarations.
 
+### x-package.json5
+
+You can use [json5](https://github.com/aseemk/json5) format. F.e. you can leave trailing comma, add single line or multi line comments or leave keys without quotes, like in javascript.
+
+Also you can use .json extention but with json5 format inside.
 
 ### Cli
 
