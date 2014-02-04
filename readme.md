@@ -9,11 +9,12 @@ Now you can write just one x-package.json file and generate from it files for an
 1. Put all declarations you want to have in every package file as you would do it in package.json.
 1. Specify "packages" array which contains file names you want to generate.
 
-            {
-                "name": "my-package",
-                "version": "0.1.0",
-                "packages": ["bower.json", "package.json"]
-            }
+        {
+            "name": "my-package",
+            "version": "0.1.0",
+            "packages": ["bower.json", "package.json", "component.json", "my-package.jquery.json",
+                "what-ever-manager.json"]
+        }
 
 1. Optionally you can define package specific declarations.
 
