@@ -1,0 +1,31 @@
+{
+    name: 'xpkg',
+    description: 'Write x-package.json once and generate package.json, bower.json whatever.json.',
+    version: '0.1.1',
+    author: {
+        name: 'Oleg Slobodskoi',
+        email: 'oleg008@gmail.com'
+    },
+    repository: {
+        type: 'git',
+        url: 'git@github.com:kof/node-xpkg.git'
+    },
+    keywords: ['package', 'json', 'generator', 'bower', 'component',
+        'package.json', 'bower.json', 'component.json', 'jquery.json'],
+    licenses: [
+        {
+           type: 'MIT',
+           url: 'http://www.opensource.org/licenses/mit-license.php'
+        }
+    ],
+    // List specific files you want to generate.
+    packages: ['package.json'],
+    // package.json specific declarations.
+    'package.json': {
+        engines: {node: '>=0.8.0'},
+        bin: {xpkg: './bin/xpkg.js'},
+        dependencies: {
+            json5: '0.2.0'
+        }
+    }
+}

@@ -21,9 +21,6 @@
     "component.json",
     "jquery.json"
   ],
-  "bin": {
-    "xpkg": "./bin/xpkg.js"
-  },
   "licenses": [
     {
       "type": "MIT",
@@ -32,5 +29,11 @@
   ],
   "engines": {
     "node": ">=0.8.0"
+  },
+  "bin": {
+    "xpkg": "./bin/xpkg.js"
+  },
+  "dependencies": {
+    "json5": "0.2.0"
   }
 }

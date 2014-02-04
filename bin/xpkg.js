@@ -1,7 +1,8 @@
 #!/usr/bin/env node
 
 var Path = require('path'),
-    fs = require('fs')
+    fs = require('fs'),
+    JSON5 = require('json5')
 
 var path = Path.resolve(process.cwd(), process.argv[2] || ''),
     confPath = Path.join(path, 'x-package.json'),
@@ -13,9 +14,12 @@ function error(msg) {
     process.exit(1)
 }
 
-if (!fs.existsSync(confPath)) return error('No x-package.json found at ' + confPath)
+if (!fs.existsSync(confPath)) {
+    confPath += 5
+    if (!fs.existsSync(confPath)) return error('No x-package.json or .json5 found at ' + confPath)
+}
 
-conf = require(confPath)
+conf = JSON5.parse(fs.readFileSync(confPath, 'utf8'))
 
 if (!Array.isArray(conf.packages) || !conf.packages.length) return error('Missing "packages" array in x-package.json')
 

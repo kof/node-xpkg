@@ -1,0 +1,1 @@
+- 0.1.1 added support for json5
