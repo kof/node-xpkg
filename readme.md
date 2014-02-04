@@ -1,6 +1,6 @@
 ## Generate json files for any package manager
 
-A you tired from writing separate .json files for every package manager?
+Are you tired from writing separate .json files for every package manager?
 
 Now you can write just one x-package.json file and generate from it files for any package manager. Every existing or upcoming manager is already supported. Also manager specific declarations are supported.
 
