@@ -15,7 +15,11 @@
     "json",
     "generator",
     "bower",
-    "component"
+    "component",
+    "package.json",
+    "bower.json",
+    "component.json",
+    "jquery.json"
   ],
   "bin": {
     "xpkg": "./bin/xpkg.js"
@@ -26,7 +30,7 @@
       "url": "http://www.opensource.org/licenses/mit-license.php"
     }
   ],
-  "scripts": {
-    "build": "./bin/xpkg.json"
+  "engines": {
+    "node": ">=0.8.0"
   }
 }

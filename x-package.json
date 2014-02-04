@@ -21,6 +21,6 @@
     ],
     "packages": ["package.json"],
     "package.json": {
-        "scripts": {"build": "./bin/xpkg.json"}
+        "engines": {"node": ">=0.8.0"}
     }
 }
