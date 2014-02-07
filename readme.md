@@ -6,7 +6,7 @@ Now you can write just one x-package.json file and generate from it files for an
 
 ### x-package.json
 
-1. Put all declarations you want to have in every package file as you would do it in package.json.
+1. Put all declarations you want to have in every package file like you would do it in package.json.
 1. Specify "packages" array which contains file names you want to generate.
 
         {
@@ -33,7 +33,7 @@ Now you can write just one x-package.json file and generate from it files for an
             }
         }
 
-    After you run `xpkg` with this example you will get bower.json and package.json generated, where package.json will additionally contain "bin" declaration and non of them will contain x-package specific declarations.
+    After you run `xpkg` with this example you will get bower.json and package.json generated, where package.json will additionally contain "bin" declaration.
 
 ### x-package.json5
 
