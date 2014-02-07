@@ -26,14 +26,5 @@
       "type": "MIT",
       "url": "http://www.opensource.org/licenses/mit-license.php"
     }
-  ],
-  "engines": {
-    "node": ">=0.8.0"
-  },
-  "bin": {
-    "xpkg": "./bin/xpkg.js"
-  },
-  "dependencies": {
-    "json5": "0.2.0"
-  }
+  ]
 }

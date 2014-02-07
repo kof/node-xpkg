@@ -7,7 +7,15 @@ var Path = require('path'),
 var path = Path.resolve(process.cwd(), process.argv[2] || ''),
     confPath = Path.join(path, 'x-package.json'),
     conf,
-    cleanedConf
+    cleanedConf,
+    filesMap
+
+filesMap = {
+    npm: 'package.json',
+    bower: 'bower.json',
+    component: 'component.json',
+    jquery: 'name.jquery.json'
+}
 
 function error(msg) {
     console.log(msg)
@@ -21,8 +29,6 @@ if (!fs.existsSync(confPath)) {
 
 conf = JSON5.parse(fs.readFileSync(confPath, 'utf8'))
 
-if (!Array.isArray(conf.packages) || !conf.packages.length) return error('Missing "packages" array in x-package.json')
-
 function extend(a, b) {
     for (var key in b) a[key] = b[key]
     return a
@@ -30,14 +36,19 @@ function extend(a, b) {
 
 // Create an x-package specific declarations free config object.
 cleanedConf = extend({}, conf)
-cleanedConf.packages.forEach(function(name) {
-    delete cleanedConf[name]
-})
-delete cleanedConf.packages
+delete cleanedConf.overlay
 
-conf.packages.forEach(function(name) {
-    var data = extend({}, cleanedConf)
-    if (conf[name]) extend(data, conf[name])
-    fs.writeFileSync(Path.join(path, name), JSON.stringify(data, null, '  '))
-    console.log('Generated', name)
+conf.overlay || (conf.overlay = {npm: true})
+
+Object.keys(conf.overlay).forEach(function(name) {
+    var data = extend({}, cleanedConf),
+        def = conf.overlay[name],
+        fileName = filesMap[name]
+
+    if (name == 'jquery') fileName = fileName.replace('name', data.name)
+    if (typeof def == 'object') extend(data, def)
+
+    fs.writeFileSync(Path.join(path, fileName), JSON.stringify(data, null, '  '))
+    console.log('Generated', fileName)
 })
+

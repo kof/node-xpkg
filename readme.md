@@ -2,7 +2,7 @@
 
 Are you tired from writing separate .json files for every package manager?
 
-Now you can write just one x-package.json file and generate from it files for any package manager. Every existing or upcoming manager is already supported. Also manager specific declarations are supported.
+Now you can write just one x-package.json file and generate from it files for any package manager. Manager specific declarations are supported using "overlay" from [Packages 1.1](http://wiki.commonjs.org/wiki/Packages/1.1)
 
 ### x-package.json
 
@@ -12,8 +12,12 @@ Now you can write just one x-package.json file and generate from it files for an
         {
             "name": "my-package",
             "version": "0.1.0",
-            "packages": ["bower.json", "package.json", "component.json", "my-package.jquery.json",
-                "what-ever-manager.json"]
+            "overlay": {
+                "npm": true,
+                "bower": true,
+                "jquery": true,
+                "component": true
+            }
         }
 
 1. Optionally you can define package specific declarations.
@@ -21,8 +25,12 @@ Now you can write just one x-package.json file and generate from it files for an
         {
             "name": "my-package",
             "version": "0.1.0",
-            "packages": ["bower.json", "package.json"],
-            "package.json": {"bin": "./bin/my-bin-script.js"}
+            "overlay": {
+                "npm": {
+                    "bin": "./bin/my-bin-script.js"
+                },
+                "bower": true
+            }
         }
 
     After you run `xpkg` with this example you will get bower.json and package.json generated, where package.json will additionally contain "bin" declaration and non of them will contain x-package specific declarations.
