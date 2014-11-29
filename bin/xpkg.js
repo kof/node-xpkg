@@ -29,11 +29,11 @@ var conf = JSON5.parse(fs.readFileSync(confPath, 'utf8'))
 conf.overlay || (conf.overlay = {npm: true})
 
 // Create an x-package specific declarations free config object.
-var cleanedConf = extend({}, conf)
+var cleanedConf = extend(true, {}, conf)
 delete cleanedConf.overlay
 
 Object.keys(conf.overlay).forEach(function(name) {
-    var data = extend({}, cleanedConf)
+    var data = extend(true, {}, cleanedConf)
     var def = conf.overlay[name]
     var fileName = filesMap[name]
 

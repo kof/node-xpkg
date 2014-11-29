@@ -1,7 +1,7 @@
 {
     name: 'xpkg',
     description: 'Write x-package.json once and generate package.json, bower.json whatever.json.',
-    version: '0.2.1',
+    version: '0.2.2',
     author: {
         name: 'Oleg Slobodskoi',
         email: 'oleg008@gmail.com'
