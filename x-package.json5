@@ -1,7 +1,7 @@
 {
     name: 'xpkg',
     description: 'Write x-package.json once and generate package.json, bower.json whatever.json.',
-    version: '0.2.0',
+    version: '0.2.1',
     author: {
         name: 'Oleg Slobodskoi',
         email: 'oleg008@gmail.com'
@@ -18,16 +18,20 @@
            url: 'http://www.opensource.org/licenses/mit-license.php'
         }
     ],
+    dependencies: {
+        engines: {node: '>=0.8.0'},
+        bin: {xpkg: './bin/xpkg.js'},
+    },
     // Overwrite declarations for specific managers.
     overlay: {
         // Npm specific declarations.
         npm: {
-            engines: {node: '>=0.8.0'},
-            bin: {xpkg: './bin/xpkg.js'},
             dependencies: {
-                json5: '0.2.0'
+                json5: '0.2.0',
+                extend: '2.0.0'
             }
         },
+        // Just as usage example.
         bower: true
     }
 }

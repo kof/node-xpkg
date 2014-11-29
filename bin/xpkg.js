@@ -1,16 +1,13 @@
 #!/usr/bin/env node
 
-var Path = require('path'),
-    fs = require('fs'),
-    JSON5 = require('json5')
+var path = require('path')
+var fs = require('fs')
+var JSON5 = require('json5')
+var extend = require('extend')
 
-var path = Path.resolve(process.cwd(), process.argv[2] || ''),
-    confPath = Path.join(path, 'x-package.json'),
-    conf,
-    cleanedConf,
-    filesMap
-
-filesMap = {
+var dir = path.resolve(process.cwd(), process.argv[2] || '')
+var confPath = path.join(dir, 'x-package.json')
+var filesMap = {
     npm: 'package.json',
     bower: 'bower.json',
     component: 'component.json',
@@ -27,28 +24,23 @@ if (!fs.existsSync(confPath)) {
     if (!fs.existsSync(confPath)) return error('No x-package.json or .json5 found at ' + confPath)
 }
 
-conf = JSON5.parse(fs.readFileSync(confPath, 'utf8'))
-
-function extend(a, b) {
-    for (var key in b) a[key] = b[key]
-    return a
-}
-
-// Create an x-package specific declarations free config object.
-cleanedConf = extend({}, conf)
-delete cleanedConf.overlay
+var conf = JSON5.parse(fs.readFileSync(confPath, 'utf8'))
 
 conf.overlay || (conf.overlay = {npm: true})
 
+// Create an x-package specific declarations free config object.
+var cleanedConf = extend({}, conf)
+delete cleanedConf.overlay
+
 Object.keys(conf.overlay).forEach(function(name) {
-    var data = extend({}, cleanedConf),
-        def = conf.overlay[name],
-        fileName = filesMap[name]
+    var data = extend({}, cleanedConf)
+    var def = conf.overlay[name]
+    var fileName = filesMap[name]
 
     if (name == 'jquery') fileName = fileName.replace('name', data.name)
-    if (typeof def == 'object') extend(data, def)
+    if (typeof def == 'object') extend(true, data, def)
 
-    fs.writeFileSync(Path.join(path, fileName), JSON.stringify(data, null, '  '))
+    fs.writeFileSync(path.join(dir, fileName), JSON.stringify(data, null, '  '))
     console.log('Generated', fileName)
 })
 
