@@ -1,7 +1,7 @@
 {
   "name": "xpkg",
   "description": "Write x-package.json once and generate package.json, bower.json whatever.json.",
-  "version": "0.2.2",
+  "version": "0.2.3",
   "author": {
     "name": "Oleg Slobodskoi",
     "email": "oleg008@gmail.com"
@@ -26,13 +26,5 @@
       "type": "MIT",
       "url": "http://www.opensource.org/licenses/mit-license.php"
     }
-  ],
-  "dependencies": {
-    "engines": {
-      "node": ">=0.8.0"
-    },
-    "bin": {
-      "xpkg": "./bin/xpkg.js"
-    }
-  }
+  ]
 }
